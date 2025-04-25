@@ -1,0 +1,118 @@
+body {
+    font-family: sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding-top: 60px; /* Add padding for the fixed header */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    background-color: #333;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: fixed; /* Stick the header to the top */
+    top: 0;
+    z-index: 100; /* Ensure it's above other content */
+}
+
+.website-name {
+    padding-left: 10px;
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+.user-controls {
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.welcome-message {
+    margin-right: 15px;
+}
+
+.logout-button,
+.login-button {
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+h2 {
+    color: #333;
+    margin-top: 20px; /* Adjust spacing below the header */
+    margin-bottom: 15px;
+}
+
+.product-list {
+    width: 80%; /* Adjust width of the table */
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden; /* For rounded corners on table */
+}
+
+.product-list th,
+.product-list td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.product-list th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+    color: #555;
+}
+
+.product-item:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.product-item td {
+    color: #333;
+}
+
+.action {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.action-button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.action-button:first-child {
+    background-color: #007bff; /* Details button */
+    color: white;
+}
+
+.action-button:first-child:hover {
+    background-color: #0056b3;
+}
+
+.action-button:last-child {
+    background-color: #28a745; /* Add to Cart button */
+    color: white;
+}
+
+.action-button:last-child:hover {
+    background-color: #1e7e34;
+}
