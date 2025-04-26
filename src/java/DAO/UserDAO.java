@@ -132,7 +132,40 @@ public class UserDAO {
             
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("[CustomerDAO.java] error adding Customer");
+            System.out.println("[UserDAO.java] error adding User");
+        } finally {
+            if (cn != null) {
+                try {
+                    cn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            
+        }
+            
+        return result;
+    }
+    
+    public int resetUserPassword(String username, String newPassword) {
+        int result = 0;
+        Connection cn = null;
+
+        try {
+            cn = DBUtils.getConnection();
+            
+            if (cn!=null) {
+                String sql ="UPDATE tblTaiKhoan SET matkhau = ? WHERE tentk = ?";
+                PreparedStatement stmt = cn.prepareStatement(sql);
+                stmt.setString(1, newPassword);
+                stmt.setString(2, username);
+                result = stmt.executeUpdate();
+                stmt.close();
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("[UserDAO.java] error update User");
         } finally {
             if (cn != null) {
                 try {

@@ -28,7 +28,6 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("POST received");
         UserDAO userDAO = new UserDAO();
 
         String username = request.getParameter("username");
@@ -40,22 +39,26 @@ public class RegisterServlet extends HttpServlet {
         if (username.length() <= 5) {
             request.setAttribute("error", "username must have more than 5 characters, please try again");
             request.getRequestDispatcher("view/RegisterAccount.jsp").forward(request, response);
+            return;
         }
 
         if (password.length() <= 8) {
             request.setAttribute("error", "Password must have more than 8 characters, please try again");
             request.getRequestDispatcher("view/RegisterAccount.jsp").forward(request, response);
+            return;
         }
 
         if (!password.equals(confirmPass)) {
             request.setAttribute("error", "Passwords does not match, please try again");
             request.getRequestDispatcher("view/RegisterAccount.jsp").forward(request, response);
+            return;
         }
 
         User userCheck = userDAO.checkUser(username);
         if (userCheck != null) {
             request.setAttribute("error", "This username has already been taken, please try again");
             request.getRequestDispatcher("view/RegisterAccount.jsp").forward(request, response);
+            return;
         }
 
         //Actual input

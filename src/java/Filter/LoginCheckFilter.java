@@ -135,6 +135,7 @@ public class LoginCheckFilter implements Filter {
                     || webAction.equals("login")
                     || webAction.equals("registerAccount")
                     || webAction.equals("viewDetails")
+                    || webAction.equals("resetPassword")
                     || requestURI.contains("css/")) {
                 chain.doFilter(request, response);
                 return;

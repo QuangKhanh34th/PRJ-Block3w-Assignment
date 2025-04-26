@@ -19,6 +19,9 @@
             <c:if test="${not empty sessionScope.UserRegistered}">
                 <p id="stateBanner" class="success-message">${sessionScope.UserRegistered}</p>
             </c:if>
+            <c:if test="${not empty sessionScope.PasswordReset}">
+                <p id="stateBanner" class="success-message">${sessionScope.PasswordReset}</p>
+            </c:if>
 
             <form action="MainController?action=login" method="post">
                 <label for="tentk">Username:</label><br>
@@ -45,7 +48,13 @@
             </form>
 
             <div class="create-account">
-                <a href="MainController?action=registerAccount">Create Account</a>
+                <div>
+                    <a href="MainController?action=registerAccount">Create Account</a>
+                </div>
+
+                <div>
+                    <a href="MainController?action=resetPassword">Forget Password?</a>
+                </div>      
             </div>
         </div>
 
@@ -56,6 +65,7 @@
                     setTimeout(function () {
                         stateBanner.style.display = 'none';
             <% session.removeAttribute("UserRegistered");%>
+            <% session.removeAttribute("PasswordReset");%>
                     }, 5000); // Hide after 5 seconds (5000 milliseconds)
                 }
             };

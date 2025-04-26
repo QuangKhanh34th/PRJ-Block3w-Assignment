@@ -1,17 +1,15 @@
-<%--
-    Document   : RegisterAccount
-    Created on : Apr 26, 2025, 9:42:45 AM
+<%-- 
+    Document   : ResetPassword
+    Created on : Apr 26, 2025, 9:22:00 PM
     Author     : ASUS
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta charset="UTF-8">
-        <title>Register - Game Shop</title>
+        <title>Reset Password - Game Shop</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css"/>
         <style>
             body {
@@ -111,26 +109,26 @@
                 <a href="MainController" style="text-decoration: none; color: white">Game Shop</a>
             </h1>
         </div>
-
+        
         <div class="resetPwd-container">
-            <form action="MainController?action=registerAccount" method="post">
+            <form action="MainController?action=resetPassword" method="post">
                 <label for="username">Username:</label><br>
                 <input type="text" id="username" name="username" required><br><br>
 
-                <label for="email">Email:</label><br>
-                <input type="email" id="email" name="email" required><br><br>
+                <label for="oldPassword">Old Password:</label><br>
+                <input type="password" id="oldPassword" name="oldPassword" required><br><br>
 
-                <label for="password">Password:</label><br>
-                <input type="password" id="password" name="password" required><br><br>
+                <label for="password">New Password:</label><br>
+                <input type="password" id="newPassword" name="newPassword" required><br><br>
 
                 <label for="ConfirmPassword">Confirm Password:</label><br>
-                <input type="password" id="ConfirmPassword" name="confirmPassword" required><br><br>
+                <input type="password" id="ConfirmPassword" name="confirmNewPassword" required><br><br>
 
                 <c:if test="${not empty requestScope.error}">
                     <p class="error-message">${requestScope.error}</p>
                 </c:if>
 
-                <input type="submit" value="Create Account">
+                <input type="submit" value="Reset Password">
             </form>
 
             <div class="back-to-login">

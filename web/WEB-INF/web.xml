@@ -32,6 +32,10 @@
         <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>Controller.RegisterServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ResetUserPasswordServlet</servlet-name>
+        <servlet-class>Controller.ResetUserPasswordServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ResetUserPasswordServlet</servlet-name>
+        <url-pattern>/resetPwd</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -85,7 +85,11 @@ body {
 .create-account {
     margin-top: 20px;
     text-align: center;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr;
 }
+
 
 .create-account a {
     color: #007bff;

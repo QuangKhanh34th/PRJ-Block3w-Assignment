@@ -27,9 +27,10 @@ public class MainController extends HttpServlet {
      */
     
     private static final String HOME_PAGE = "/home"; // Trang chủ mặc định
-    private static final String LOGIN_SERVLET = "/login";
-    private static final String LOGOUT_SERVLET = "/logout";
-    private static final String REGISTER_SERVLET = "/register";
+    private static final String LOGIN = "/login";
+    private static final String LOGOUT = "/logout";
+    private static final String REGISTER_ACCOUNT = "/register";
+    private static final String RESET_PASSWORD = "/resetPwd";
     private static final String PRODUCT_DETAILS = "/details";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -46,7 +47,7 @@ public class MainController extends HttpServlet {
                 switch (action) {
                     // Các hành động khác có thể được thêm vào đây nếu cần
                     case "login": {
-                        url = LOGIN_SERVLET;  // mapping servlet LoginServlet
+                        url = LOGIN;  // mapping servlet LoginServlet
                         break;
                     }
                     
@@ -56,12 +57,17 @@ public class MainController extends HttpServlet {
                     }
                     
                     case "logout": {
-                        url = LOGOUT_SERVLET;
+                        url = LOGOUT;
                         break;
                     }
                     
                     case "registerAccount": {
-                        url = REGISTER_SERVLET;
+                        url = REGISTER_ACCOUNT;
+                        break;
+                    }
+                    
+                    case "resetPassword": {
+                        url = RESET_PASSWORD;
                         break;
                     }
                 }
