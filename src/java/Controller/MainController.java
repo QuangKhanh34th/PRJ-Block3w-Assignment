@@ -32,6 +32,8 @@ public class MainController extends HttpServlet {
     private static final String REGISTER_ACCOUNT = "/register";
     private static final String RESET_PASSWORD = "/resetPwd";
     private static final String PRODUCT_DETAILS = "/details";
+    private static final String MANAGE_CATEGORY = "/GetCategoryListServlet";
+    private static final String MANAGE_SUPPLIER = "/GetSupplierListServlet";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
@@ -68,6 +70,16 @@ public class MainController extends HttpServlet {
                     
                     case "resetPassword": {
                         url = RESET_PASSWORD;
+                        break;
+                    }
+                    
+                    case "manageCategory": {
+                        url= MANAGE_CATEGORY;
+                        break;
+                    }
+                    
+                    case "manageSupplier": {
+                        url = MANAGE_SUPPLIER;
                         break;
                     }
                 }

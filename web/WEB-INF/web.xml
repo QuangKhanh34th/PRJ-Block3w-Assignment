@@ -36,6 +36,14 @@
         <servlet-name>ResetUserPasswordServlet</servlet-name>
         <servlet-class>Controller.ResetUserPasswordServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetCategoryListServlet</servlet-name>
+        <servlet-class>Controller.GetCategoryListServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetSupplierListServlet</servlet-name>
+        <servlet-class>Controller.GetSupplierListServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -63,6 +71,14 @@
     <servlet-mapping>
         <servlet-name>ResetUserPasswordServlet</servlet-name>
         <url-pattern>/resetPwd</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetCategoryListServlet</servlet-name>
+        <url-pattern>/GetCategoryListServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetSupplierListServlet</servlet-name>
+        <url-pattern>/GetSupplierListServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -28,11 +28,6 @@ body {
     top: 0;
 }
 
-.error-message {
-    color: red;
-    margin-top: 10px;
-}
-
 
 /* LOGIN PAGE STYLE */
 
@@ -110,3 +105,4 @@ body {
     margin-bottom: 20px;
     text-align: center;
 }
+

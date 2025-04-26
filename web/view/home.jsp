@@ -13,11 +13,36 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Game Shop</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
+        <style>
+            .admin-links {
+                display: flex;
+                align-items: center;
+                margin-left: 20px; /* Space between website name and links */
+            }
 
+            .admin-links a {
+                color: white;
+                text-decoration: none;
+                margin-right: 15px;
+                font-size: 0.95em;
+            }
+
+            .admin-links a:hover {
+                text-decoration: underline;
+            }
+        </style>
     </head>
     <body>
         <div class="header">
-            <span class="website-name">Game Shop</span>
+            <div style="display: flex; align-items: center;">
+                <span class="website-name">Game Shop</span>
+                <c:if test="${not empty sessionScope.admin}">
+                    <div class="admin-links">
+                        <a href="MainController?action=manageCategory">Manage Category</a>
+                        <a href="MainController?action=manageSupplier">Manage Supplier</a>
+                    </div>
+                </c:if>
+            </div>
             <div class="user-controls">
                 <c:if test="${empty sessionScope.customer && empty sessionScope.admin}">
                     <a href="MainController?action=login" class="login-button">Login</a>

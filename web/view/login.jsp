@@ -7,6 +7,17 @@
         <meta charset="UTF-8">
         <title>Login - Game Shop</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css"/>
+        <style>
+            .error-message {
+                background-color: #ee6b6e; /* Light red background */
+                color: #de0a26; /* Darker red text for contrast */
+                padding: 15px;
+                border: 1px solid #d1001f; /* dark red border */
+                border-radius: 4px;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+        </style>
     </head>
     <body>
         <div class="banner">
@@ -21,6 +32,9 @@
             </c:if>
             <c:if test="${not empty sessionScope.PasswordReset}">
                 <p id="stateBanner" class="success-message">${sessionScope.PasswordReset}</p>
+            </c:if>
+            <c:if test="${not empty error}">
+                <p id="stateBanner" class="error-message">${error}</p>
             </c:if>
 
             <form action="MainController?action=login" method="post">
@@ -40,9 +54,6 @@
                            > Remember me
                 </label><br><br>
 
-                <c:if test="${not empty error}">
-                    <p class="error-message">${error}</p>
-                </c:if>
 
                 <input type="submit" value="Login">
             </form>
@@ -66,6 +77,7 @@
                         stateBanner.style.display = 'none';
             <% session.removeAttribute("UserRegistered");%>
             <% session.removeAttribute("PasswordReset");%>
+            <% session.removeAttribute("error");%>
                     }, 5000); // Hide after 5 seconds (5000 milliseconds)
                 }
             };
