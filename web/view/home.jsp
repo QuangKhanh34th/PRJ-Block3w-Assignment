@@ -19,11 +19,15 @@
         <div class="header">
             <span class="website-name">Game Shop</span>
             <div class="user-controls">
-                <c:if test="${empty sessionScope.user}">
+                <c:if test="${empty sessionScope.customer && empty sessionScope.admin}">
                     <a href="MainController?action=login" class="login-button">Login</a>
                 </c:if>
-                <c:if test="${not empty sessionScope.user}">
-                    <span class="welcome-message">Welcome, ${sessionScope.user.username}</span>
+                <c:if test="${not empty sessionScope.customer}">
+                    <span class="welcome-message">Welcome, ${sessionScope.customer.username}</span>
+                    <a href="MainController?action=logout" class="logout-button">Logout</a>
+                </c:if>
+                <c:if test="${not empty sessionScope.admin}">
+                    <span class="welcome-message">Welcome, ${sessionScope.admin.username}</span>
                     <a href="MainController?action=logout" class="logout-button">Logout</a>
                 </c:if>
             </div>

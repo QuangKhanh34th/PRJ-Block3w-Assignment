@@ -31,19 +31,21 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         String username = request.getParameter("tentk");
         String password = request.getParameter("matkhau");
         String remember = request.getParameter("remember");
 
         UserDAO dao = new UserDAO();
-        User user = dao.checkLogin(username, password);
+        User user = dao.checkUser(username, password);
 
         if (user != null) {
-            // Save user info to session
+            // Save user info to session based on role
             HttpSession session = request.getSession();
-            session.setAttribute("user", user);
-            
+            if (user.getUserGroup().equals("KH")) {
+                session.setAttribute("customer", user);
+            } else if (user.getUserGroup().equals("AD")) {
+                session.setAttribute("admin", user);
+            }
             
             // "Remember me" function
             if (remember != null && remember.equals("true")) {

@@ -30,7 +30,8 @@ public class LogoutServlet extends HttpServlet {
     throws ServletException, IOException {
         try {
                 HttpSession session = request.getSession();
-                session.removeAttribute("user");
+                session.removeAttribute("admin");
+                session.removeAttribute("customer");
             } catch (Exception e) {
                 e.printStackTrace();
             }finally{

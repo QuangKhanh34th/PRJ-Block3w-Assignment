@@ -15,7 +15,14 @@
             </h1>
         </div>
 
-         <div class="login-container">
+        <div class="login-container">
+            <c:if test="${not empty sessionScope.UserRegistered}">
+                <p id="stateBanner" class="success-message">${sessionScope.UserRegistered}</p>
+            </c:if>
+            <c:if test="${not empty sessionScope.PasswordReset}">
+                <p id="stateBanner" class="success-message">${sessionScope.PasswordReset}</p>
+            </c:if>
+
             <form action="MainController?action=login" method="post">
                 <label for="tentk">Username:</label><br>
                 <input type="text" id="tentk" name="tentk"
@@ -30,7 +37,7 @@
                            <c:if test="${cookie.userC.value != null}">
                                checked
                            </c:if>
-                    > Remember me
+                           > Remember me
                 </label><br><br>
 
                 <c:if test="${not empty error}">
@@ -41,9 +48,27 @@
             </form>
 
             <div class="create-account">
-                <a href="MainController?action=registerAccount">Create Account</a>
+                <div>
+                    <a href="MainController?action=registerAccount">Create Account</a>
+                </div>
+
+                <div>
+                    <a href="MainController?action=resetPassword">Forget Password?</a>
+                </div>      
             </div>
         </div>
 
+        <script>
+            window.onload = function () {
+                var stateBanner = document.getElementById('stateBanner');
+                if (stateBanner) {
+                    setTimeout(function () {
+                        stateBanner.style.display = 'none';
+            <% session.removeAttribute("UserRegistered");%>
+            <% session.removeAttribute("PasswordReset");%>
+                    }, 5000); // Hide after 5 seconds (5000 milliseconds)
+                }
+            };
+        </script>
     </body>
 </html>
