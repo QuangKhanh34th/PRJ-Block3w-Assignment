@@ -34,7 +34,6 @@ public class ViewProductDetailsServlet extends HttpServlet {
         if (masp != null && !masp.isEmpty()) {
             ProductDAO dao = new ProductDAO();
             Product product = dao.getProductByID(masp);
-            System.out.println(product.getProdImagePath());
 
             if (product != null) {
                 request.setAttribute("product", product);

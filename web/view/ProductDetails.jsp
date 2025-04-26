@@ -51,14 +51,14 @@
                                     <button class="add-to-cart-button">Add to Cart</button>
                                 </a>
                             </c:if>
-                            <a href="home" class="back-link">Back to Product List</a>
+                            <a href="MainController" class="back-link">Back to Product List</a>
                         </div>
                     </div>
                 </div>
             </c:if>
             <c:if test="${empty product}">
                 <p class="error-message">Product not found.</p>
-                <a href="home" class="back-link">Back to Product List</a>
+                <a href="MainController" class="back-link">Back to Product List</a>
             </c:if>
         </div>
     </body>

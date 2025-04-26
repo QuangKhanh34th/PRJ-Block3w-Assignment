@@ -11,7 +11,7 @@ package Model;
 public class User {
     private String username;
     private String password;
-    private boolean isDeleted;
+    private boolean deleted;
     private String email;
     private String userGroup; //group: admin (AD) or user (KH)
 
@@ -21,7 +21,7 @@ public class User {
     public User(String username, String password, boolean isDeleted, String email, String userGroup) {
         this.username = username;
         this.password = password;
-        this.isDeleted = isDeleted;
+        this.deleted = isDeleted;
         this.email = email;
         this.userGroup = userGroup;
     }
@@ -43,12 +43,12 @@ public class User {
         this.password = password;
     }
 
-    public boolean isIsDeleted() {
-        return isDeleted;
+    public boolean isDeleted() {
+        return deleted;
     }
 
-    public void setIsDeleted(boolean isDeleted) {
-        this.isDeleted = isDeleted;
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 
     public String getEmail() {
