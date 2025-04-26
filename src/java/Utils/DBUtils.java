@@ -38,6 +38,7 @@ public class DBUtils {
             }
         } catch (Exception e) {
             System.out.println("Có lỗi xảy ra: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }
