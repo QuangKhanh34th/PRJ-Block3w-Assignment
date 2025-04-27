@@ -103,7 +103,7 @@
                         </c:if>
                         <c:if test="${not empty sessionScope.admin}">
                             <div class="action">
-                                <a href="#">
+                                <a href="MainController?action=updateProduct&prodID=${sp.prodID}">
                                     <button class="action-button" style="background-color: #007bff">Update</button>
                                 </a>
                             </div>

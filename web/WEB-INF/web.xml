@@ -60,6 +60,10 @@
         <servlet-name>DeleteProductServlet</servlet-name>
         <servlet-class>Controller.DeleteProductServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateProductServlet</servlet-name>
+        <servlet-class>Controller.UpdateProductServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -111,6 +115,10 @@
     <servlet-mapping>
         <servlet-name>DeleteProductServlet</servlet-name>
         <url-pattern>/DeleteProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateProductServlet</servlet-name>
+        <url-pattern>/UpdateProductServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

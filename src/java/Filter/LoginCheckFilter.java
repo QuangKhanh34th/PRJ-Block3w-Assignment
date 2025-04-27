@@ -177,6 +177,7 @@ public class LoginCheckFilter implements Filter {
                     || (webAction.equals("viewDetails") && target.equals("supplier"))
                     || webAction.equals("addProduct")
                     || webAction.equals("deleteProduct")
+                    || webAction.equals("updateProduct")
                     ) {
                 if (session.getAttribute("admin") == null) {
                     System.out.println("[LoginCheckFilter.java] Unauthorized access to Admin's functions,"

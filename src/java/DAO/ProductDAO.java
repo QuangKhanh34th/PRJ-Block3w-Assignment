@@ -87,7 +87,7 @@ public class ProductDAO {
 
         try {
             cn = DBUtils.getConnection();
-            if (cn!=null) {
+            if (cn != null) {
                 String sql = "INSERT INTO tblSanPham (masp, tensp, mota, soluong, dongia, hinhanh, trangthai, madm, mancc)"
                         + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 PreparedStatement stmt = cn.prepareStatement(sql);
@@ -100,11 +100,11 @@ public class ProductDAO {
                 stmt.setInt(7, 1);
                 stmt.setString(8, target.getProdCategory());
                 stmt.setString(9, target.getProdSupplier());
-                
+
                 result = stmt.executeUpdate();
                 stmt.close();
             }
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -116,24 +116,24 @@ public class ProductDAO {
                 }
             }
         }
-        
+
         return result;
     }
-    
+
     public int deleteProduct(String prodID) {
         Connection cn = null;
-        int result=0;
-        
+        int result = 0;
+
         try {
-            cn=DBUtils.getConnection();
-            
-            if(cn!=null) {
+            cn = DBUtils.getConnection();
+
+            if (cn != null) {
                 String sql = "UPDATE tblSanPham SET trangthai = 0 WHERE masp = ?";
                 PreparedStatement stmt = cn.prepareStatement(sql);
                 stmt.setString(1, prodID);
                 result = stmt.executeUpdate();
                 stmt.close();
-                
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -146,7 +146,43 @@ public class ProductDAO {
                 }
             }
         }
-        
+
+        return result;
+    }
+
+    public int updateProduct(Product target) {
+        Connection cn = null;
+        int result = 0;
+
+        try {
+            cn = DBUtils.getConnection();
+            if (cn != null) {
+                String sql = "UPDATE tblSanPham SET tensp = ?, mota = ?, soluong = ?, dongia = ?, madm = ?, mancc = ? WHERE masp = ?";
+                PreparedStatement stmt = cn.prepareStatement(sql);
+                stmt.setString(1, target.getProdName());
+                stmt.setString(2, target.getProdDescription());
+                stmt.setInt(3, target.getProdQuantity());
+                stmt.setDouble(4, target.getProdPrice());
+                stmt.setString(5, target.getProdCategory());
+                stmt.setString(6, target.getProdSupplier());
+                stmt.setString(7, target.getProdID());
+
+                result = stmt.executeUpdate();
+                stmt.close();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cn != null) {
+                try {
+                    cn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
         return result;
     }
 }

@@ -34,6 +34,7 @@ public class MainController extends HttpServlet {
     private static final String PRODUCT_DETAILS = "/details";
     private static final String ADD_PRODUCT = "/addNewProductServlet";
     private static final String REMOVE_PRODUCT = "/DeleteProductServlet";
+    private static final String UPDATE_PRODUCT = "/UpdateProductServlet";
     private static final String MANAGE_CATEGORY = "/GetCategoryListServlet";
     private static final String CATEGORY_DETAILS = "/GetCategoryDetailsServlet";
     private static final String MANAGE_SUPPLIER = "/GetSupplierListServlet";
@@ -111,6 +112,11 @@ public class MainController extends HttpServlet {
                     
                     case "deleteProduct": {
                         url =REMOVE_PRODUCT;
+                        break;
+                    }
+                    
+                    case "updateProduct": {
+                        url = UPDATE_PRODUCT;
                         break;
                     }
                 }
