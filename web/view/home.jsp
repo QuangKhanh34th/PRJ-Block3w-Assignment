@@ -14,20 +14,20 @@
         <title>Game Shop</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ActionList.css">
         <style>
-            .admin-links {
+            .navigation-links {
                 display: flex;
                 align-items: center;
                 margin-left: 20px; /* Space between website name and links */
             }
 
-            .admin-links a {
+            .navigation-links a {
                 color: white;
                 text-decoration: none;
                 margin-right: 15px;
                 font-size: 0.95em;
             }
 
-            .admin-links a:hover {
+            .navigation-links a:hover {
                 text-decoration: underline;
             }
         </style>
@@ -37,10 +37,17 @@
             <div style="display: flex; align-items: center;">
                 <span class="website-name">Game Shop</span>
                 <c:if test="${not empty sessionScope.admin}">
-                    <div class="admin-links">
+                    <div class="navigation-links">
                         <a href="MainController">Manage Product</a>
                         <a href="MainController?action=manageCategory">Manage Category</a>
                         <a href="MainController?action=manageSupplier">Manage Supplier</a>
+                    </div>
+                </c:if>
+                <c:if test="${not empty sessionScope.customer}">
+                    <div class="navigation-links">
+                        <a href="MainController">Product List</a>
+                        <a href="MainController?action=viewOrders">Orders</a>
+                        <a href="MainController?action=viewCart">My Cart</a>
                     </div>
                 </c:if>
             </div>
@@ -68,7 +75,7 @@
                 </a>
             </div>
         </c:if>
-            
+
         <table border="1" cellpadding="5" cellspacing="0" class="item-list">
             <tr>
                 <th>Code</th>
@@ -94,13 +101,17 @@
                             </a>
                         </div>
 
+                        <!-- customer function -->
                         <c:if test="${not empty sessionScope.customer}">
                             <div class="action">
-                                <a href="#">
+                                <a href="MainController?action=addToCart&prodID=${sp.prodID}">
                                     <button class="action-button">Add to Cart</button>
                                 </a>
                             </div>
                         </c:if>
+
+
+                        <!-- admin function -->
                         <c:if test="${not empty sessionScope.admin}">
                             <div class="action">
                                 <a href="MainController?action=updateProduct&prodID=${sp.prodID}">

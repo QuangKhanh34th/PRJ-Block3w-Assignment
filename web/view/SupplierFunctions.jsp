@@ -13,20 +13,20 @@
         <title>Manage Supplier - Game Shop</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ActionList.css">
         <style>
-            .admin-links {
+            .navigation-links {
                 display: flex;
                 align-items: center;
                 margin-left: 20px; /* Space between website name and links */
             }
 
-            .admin-links a {
+            .navigation-links a {
                 color: white;
                 text-decoration: none;
                 margin-right: 15px;
                 font-size: 0.95em;
             }
 
-            .admin-links a:hover {
+            .navigation-links a:hover {
                 text-decoration: underline;
             }
         </style>
@@ -36,7 +36,7 @@
             <div style="display: flex; align-items: center;">
                 <span class="website-name">Game Shop</span>
                 <c:if test="${not empty sessionScope.admin}">
-                    <div class="admin-links">
+                    <div class="navigation-links">
                         <a href="MainController">Manage Product</a>
                         <a href="MainController?action=manageCategory">Manage Category</a>
                         <a href="MainController?action=manageSupplier">Manage Supplier</a>

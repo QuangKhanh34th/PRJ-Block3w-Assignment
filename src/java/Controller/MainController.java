@@ -39,6 +39,12 @@ public class MainController extends HttpServlet {
     private static final String CATEGORY_DETAILS = "/GetCategoryDetailsServlet";
     private static final String MANAGE_SUPPLIER = "/GetSupplierListServlet";
     private static final String SUPPLIER_DETAILS = "/GetSupplierDetailsServlet";
+    private static final String VIEW_ORDERS = "/GetOrderListServlet";
+    private static final String VIEW_CART = "/GetCartInfoServlet";
+    private static final String ADD_ITEM_CART = "/AddItemToCartServlet";
+
+
+
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -117,6 +123,21 @@ public class MainController extends HttpServlet {
                     
                     case "updateProduct": {
                         url = UPDATE_PRODUCT;
+                        break;
+                    }
+                    
+                    case "viewOrders": {
+                        
+                        break;
+                    }
+                    
+                    case "viewCart": {
+                        
+                        break;
+                    }
+                    
+                    case "addToCart": {
+                        url=ADD_ITEM_CART;
                         break;
                     }
                 }
