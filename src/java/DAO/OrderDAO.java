@@ -121,14 +121,92 @@ public class OrderDAO {
                     double detailedPrice = table.getDouble("dongia");
                     double detailedDiscount = table.getDouble("khuyenmai");
                     double detailedTruePrice = table.getDouble("giatri");
-                    
-                    result.add(new DetailedOrder(detailedID, 
-                            detailedProdID, detailedAmount, 
-                            detailedPrice, detailedDiscount, 
+
+                    result.add(new DetailedOrder(detailedID,
+                            detailedProdID, detailedAmount,
+                            detailedPrice, detailedDiscount,
                             detailedTruePrice));
                 }
                 stmt.close();
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return result;
+    }
+
+    public int createOrder(Order newOrder) {
+        Connection cn = null;
+        int result = 0;
+
+        try {
+            cn = DBUtils.getConnection();
+
+            if (cn != null) {
+                String sql = "INSERT INTO tblHoaDon (mahd, ngaydh, trangthaixuly, makh) VALUES (?, ?, ?, ?)";
+                PreparedStatement stmt = cn.prepareStatement(sql);
+
+                stmt.setString(1, newOrder.getOrderID());
+                stmt.setString(2, newOrder.getOrderTime());
+                stmt.setInt(3, newOrder.getOrderState());
+                stmt.setString(4, newOrder.getOrderUser());
+
+                result = stmt.executeUpdate();
+
+                stmt.close();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return result;
+    }
+
+    //use list of detailed order as paramter to add multiple DetailedOrder under one Order
+    public int createDetailedOrders(List<DetailedOrder> detailedOrdersList, String orderID) {
+        Connection cn = null;
+        int result = 0;
+        try {
+            cn = DBUtils.getConnection();
+
+            if (cn != null) {
+                String sql = "INSERT INTO tblChiTietHoaDon (mahd, masp, soluong, dongia, khuyenmai, giatri) VALUES (?, ?, ?, ?, ?, ?)";
+                PreparedStatement stmt = cn.prepareStatement(sql);
+
+                for (DetailedOrder detailedOrder : detailedOrdersList) {
+                    stmt.setString(1, orderID);
+                    stmt.setString(2, detailedOrder.getDetailedProdID());
+                    stmt.setInt(3, detailedOrder.getDetailedAmount());
+                    stmt.setDouble(4, detailedOrder.getDetailedPrice());
+                    stmt.setDouble(5, detailedOrder.getDetailedDiscount());
+                    stmt.setDouble(6, detailedOrder.getDetailedTruePrice());
+
+                    stmt.addBatch(); //Add the insert statement to the batch for multiple execute at once
+                }
+
+                int[] results = stmt.executeBatch(); //execute the stored query
+                result = results.length; //Number of rows affected
+                stmt.close();
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

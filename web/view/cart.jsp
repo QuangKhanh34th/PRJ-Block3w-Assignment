@@ -134,7 +134,11 @@
                     <a href="MainController" style="text-decoration: none; color: #0099ff">
                         Continue Shopping
                     </a>
-                    <button style="padding: 10px 20px; background-color: #5cb85c; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 1em; margin-left: 20px;">Checkout</button>
+                    <a href="MainController?action=checkout">
+                        <button style="padding: 10px 20px; background-color: #5cb85c; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 1em; margin-left: 20px;">
+                            Checkout
+                        </button>
+                    </a>
                 </div>
             </c:if>
         </div>

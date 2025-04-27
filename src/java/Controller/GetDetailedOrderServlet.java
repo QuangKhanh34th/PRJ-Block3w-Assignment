@@ -42,6 +42,13 @@ public class GetDetailedOrderServlet extends HttpServlet {
             //get the order
             Order order = orderDAO.getOrderByID(orderID);
             
+            //if the order Username don't match with the current logged in username
+            //redirect back to main page to restrict access to unowned orders
+            if (!order.getOrderUser().equals(user.getUsername())) {
+                response.sendRedirect(request.getContextPath() + "/MainController");
+                return;
+            }
+            
             //get the products bought in that order
             List<DetailedOrder> detailedList = orderDAO.getDetailedOrderByID(user.getUsername(), orderID);
 

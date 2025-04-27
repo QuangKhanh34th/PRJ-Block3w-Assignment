@@ -88,6 +88,10 @@
         <servlet-name>GetDetailedOrderServlet</servlet-name>
         <servlet-class>Controller.GetDetailedOrderServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CheckoutServlet</servlet-name>
+        <servlet-class>Controller.CheckoutServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -167,6 +171,10 @@
     <servlet-mapping>
         <servlet-name>GetDetailedOrderServlet</servlet-name>
         <url-pattern>/GetDetailedOrderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckoutServlet</servlet-name>
+        <url-pattern>/CheckoutServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

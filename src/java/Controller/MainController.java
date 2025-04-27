@@ -45,6 +45,7 @@ public class MainController extends HttpServlet {
     private static final String UPDATE_CART_ITEM_QUANTITY = "/UpdateCartItemQuantityServlet";
     private static final String VIEW_ORDERS = "/GetOrderListServlet";
     private static final String ORDER_DETAILS ="/GetDetailedOrderServlet";
+    private static final String CHECKOUT = "/CheckoutServlet";
 
 
 
@@ -156,6 +157,11 @@ public class MainController extends HttpServlet {
                     
                     case "viewOrders": {
                         url =VIEW_ORDERS;
+                        break;
+                    }
+                    
+                    case "checkout": {
+                        url = CHECKOUT;
                         break;
                     }
                 }
