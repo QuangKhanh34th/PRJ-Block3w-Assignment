@@ -12,7 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Game Shop</title>
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ActionList.css">
         <style>
             .admin-links {
                 display: flex;
@@ -38,6 +38,7 @@
                 <span class="website-name">Game Shop</span>
                 <c:if test="${not empty sessionScope.admin}">
                     <div class="admin-links">
+                        <a href="MainController">Manage Product</a>
                         <a href="MainController?action=manageCategory">Manage Category</a>
                         <a href="MainController?action=manageSupplier">Manage Supplier</a>
                     </div>
@@ -60,7 +61,7 @@
 
         <h2>Product List</h2>
 
-        <table border="1" cellpadding="5" cellspacing="0" class="product-list">
+        <table border="1" cellpadding="5" cellspacing="0" class="item-list">
             <tr>
                 <th>Code</th>
                 <th>Name</th>
@@ -71,7 +72,7 @@
             </tr>
             <!-- Dùng JSTL để duyệt qua danh sách sản phẩm -->
             <c:forEach var="sp" items="${dsSanPham}">
-                <tr class="product-item">
+                <tr class="item">
                     <td>${sp.prodID}</td>
                     <td>${sp.prodName}</td>
                     <td>${sp.prodDescription}</td>
@@ -80,7 +81,7 @@
                     <td>
                         <div class="action">
                             <!-- Nút chi tiết, chuyển hướng đến MainControllerServlet với action = detail và masp -->
-                            <a href="MainController?action=viewDetails&masp=${sp.prodID}">
+                            <a href="MainController?action=viewDetails&item=product&masp=${sp.prodID}">
                                 <button class="action-button">Details</button>
                             </a>
                         </div>

@@ -133,7 +133,6 @@ public class LoginCheckFilter implements Filter {
             if (webAction == null
                     || webAction.equals("login")
                     || webAction.equals("registerAccount")
-                    || webAction.equals("viewDetails")
                     || webAction.equals("resetPassword")
                     || requestURI.contains("css/")) {
                 chain.doFilter(request, response);
@@ -169,8 +168,17 @@ public class LoginCheckFilter implements Filter {
                     httpResponse.sendRedirect(httpRequest.getContextPath() + "/MainServlet");
                     return;
                 }
-            } else */ if (webAction.equals("manageCategory")
-                    || webAction.equals("manageSupplier")) {
+            } else */
+            String target = httpRequest.getParameter("item");
+            //assign to product on default if parameter is missing to prevent validation error
+            if (target == null) {
+                target="product";
+            }
+            if (webAction.equals("manageCategory")
+                    || webAction.equals("manageSupplier")
+                    || (webAction.equals("viewDetails") && target.equals("category"))
+                    || (webAction.equals("viewDetails") && target.equals("supplier"))
+                    ) {
                 if (session.getAttribute("admin") == null) {
                     System.out.println("[LoginCheckFilter.java] Unauthorized access to Admin's functions,"
                             + " redirecting the user to: " + httpRequest.getContextPath() + "/MainController");
