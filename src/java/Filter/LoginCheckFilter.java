@@ -28,10 +28,6 @@ public class LoginCheckFilter implements Filter {
 
     private static final boolean debug = true;
 
-    // Define URL patterns for different roles
-    private static final String SALES_URL_PATTERN = "/SalesDashboard/";
-    private static final String MECHANIC_URL_PATTERN = "/MechanicDashboard/";
-    private static final String CUSTOMER_URL_PATTERN = "/CustomerDashboard/";
 
     // The filter configuration object we are associated with.  If
     // this value is null, this filter instance is not currently
@@ -129,11 +125,17 @@ public class LoginCheckFilter implements Filter {
              */
             //then continue as normal
             String webAction = httpRequest.getParameter("action");
+            String target = httpRequest.getParameter("item"); //target for the viewDetails action
+            //assign to product on default if parameter is missing to prevent validation error
+            if (target == null) {
+                target="product";
+            }
             String requestURI = httpRequest.getRequestURI();
             if (webAction == null
                     || webAction.equals("login")
                     || webAction.equals("registerAccount")
                     || webAction.equals("resetPassword")
+                    || (webAction.equals("viewDetails") && target.equals("product"))
                     || requestURI.contains("css/")) {
                 chain.doFilter(request, response);
                 return;
@@ -169,15 +171,12 @@ public class LoginCheckFilter implements Filter {
                     return;
                 }
             } else */
-            String target = httpRequest.getParameter("item");
-            //assign to product on default if parameter is missing to prevent validation error
-            if (target == null) {
-                target="product";
-            }
             if (webAction.equals("manageCategory")
                     || webAction.equals("manageSupplier")
                     || (webAction.equals("viewDetails") && target.equals("category"))
                     || (webAction.equals("viewDetails") && target.equals("supplier"))
+                    || webAction.equals("addProduct")
+                    || webAction.equals("deleteProduct")
                     ) {
                 if (session.getAttribute("admin") == null) {
                     System.out.println("[LoginCheckFilter.java] Unauthorized access to Admin's functions,"

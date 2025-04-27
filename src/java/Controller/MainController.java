@@ -32,6 +32,8 @@ public class MainController extends HttpServlet {
     private static final String REGISTER_ACCOUNT = "/register";
     private static final String RESET_PASSWORD = "/resetPwd";
     private static final String PRODUCT_DETAILS = "/details";
+    private static final String ADD_PRODUCT = "/addNewProductServlet";
+    private static final String REMOVE_PRODUCT = "/DeleteProductServlet";
     private static final String MANAGE_CATEGORY = "/GetCategoryListServlet";
     private static final String CATEGORY_DETAILS = "/GetCategoryDetailsServlet";
     private static final String MANAGE_SUPPLIER = "/GetSupplierListServlet";
@@ -55,10 +57,8 @@ public class MainController extends HttpServlet {
                     }
 
                     //go to different "view details" servlet based on the type of item get
-                    //won't change url if the user manually type in the URL and miss any of the 3 parameters required
                     case "viewDetails": {
                         String target = request.getParameter("item");
-                        System.out.println(target);
                         
                         switch (target) {
                             case "product": {
@@ -101,6 +101,16 @@ public class MainController extends HttpServlet {
 
                     case "manageSupplier": {
                         url = MANAGE_SUPPLIER;
+                        break;
+                    }
+                    
+                    case "addProduct": {
+                        url = ADD_PRODUCT;
+                        break;
+                    }
+                    
+                    case "deleteProduct": {
+                        url =REMOVE_PRODUCT;
                         break;
                     }
                 }

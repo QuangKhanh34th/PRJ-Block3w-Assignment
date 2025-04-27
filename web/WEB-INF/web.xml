@@ -52,6 +52,14 @@
         <servlet-name>GetSupplierDetailsServlet</servlet-name>
         <servlet-class>Controller.GetSupplierDetailsServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>addNewProductServlet</servlet-name>
+        <servlet-class>Controller.addNewProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteProductServlet</servlet-name>
+        <servlet-class>Controller.DeleteProductServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -95,6 +103,14 @@
     <servlet-mapping>
         <servlet-name>GetSupplierDetailsServlet</servlet-name>
         <url-pattern>/GetSupplierDetailsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addNewProductServlet</servlet-name>
+        <url-pattern>/addNewProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteProductServlet</servlet-name>
+        <url-pattern>/DeleteProductServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -17,6 +17,7 @@ import java.util.List;
  * @author ASUS
  */
 public class ProductDAO {
+
     public List<Product> getAllProduct() {
         List<Product> list = new ArrayList<>();
         String sql = "SELECT sp.masp, sp.tensp, sp.mota, sp.soluong, sp.dongia, sp.hinhanh, dm.tendm, ncc.tenncc "
@@ -78,5 +79,74 @@ public class ProductDAO {
         }
 
         return sp;
+    }
+
+    public int addProduct(Product target) {
+        Connection cn = null;
+        int result = 0;
+
+        try {
+            cn = DBUtils.getConnection();
+            if (cn!=null) {
+                String sql = "INSERT INTO tblSanPham (masp, tensp, mota, soluong, dongia, hinhanh, trangthai, madm, mancc)"
+                        + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                PreparedStatement stmt = cn.prepareStatement(sql);
+                stmt.setString(1, target.getProdID());
+                stmt.setString(2, target.getProdName());
+                stmt.setString(3, target.getProdDescription());
+                stmt.setInt(4, target.getProdQuantity());
+                stmt.setDouble(5, target.getProdPrice());
+                stmt.setString(6, target.getProdImagePath());
+                stmt.setInt(7, 1);
+                stmt.setString(8, target.getProdCategory());
+                stmt.setString(9, target.getProdSupplier());
+                
+                result = stmt.executeUpdate();
+                stmt.close();
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cn != null) {
+                try {
+                    cn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        
+        return result;
+    }
+    
+    public int deleteProduct(String prodID) {
+        Connection cn = null;
+        int result=0;
+        
+        try {
+            cn=DBUtils.getConnection();
+            
+            if(cn!=null) {
+                String sql = "UPDATE tblSanPham SET trangthai = 0 WHERE masp = ?";
+                PreparedStatement stmt = cn.prepareStatement(sql);
+                stmt.setString(1, prodID);
+                result = stmt.executeUpdate();
+                stmt.close();
+                
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cn != null) {
+                try {
+                    cn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        
+        return result;
     }
 }

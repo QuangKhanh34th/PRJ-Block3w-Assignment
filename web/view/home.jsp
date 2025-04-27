@@ -61,6 +61,14 @@
 
         <h2>Product List</h2>
 
+        <c:if test="${not empty sessionScope.admin}">
+            <div class="action">
+                <a href="MainController?action=addProduct">
+                    <button class="action-button" style="margin-bottom: 20px">Add new Product</button>
+                </a>
+            </div>
+        </c:if>
+            
         <table border="1" cellpadding="5" cellspacing="0" class="item-list">
             <tr>
                 <th>Code</th>
@@ -85,13 +93,29 @@
                                 <button class="action-button">Details</button>
                             </a>
                         </div>
-                        <div class="action">
-                            <c:if test="${sessionScope.user.userGroup == 'KH'}">
+
+                        <c:if test="${not empty sessionScope.customer}">
+                            <div class="action">
                                 <a href="#">
                                     <button class="action-button">Add to Cart</button>
                                 </a>
-                            </c:if>
-                        </div>
+                            </div>
+                        </c:if>
+                        <c:if test="${not empty sessionScope.admin}">
+                            <div class="action">
+                                <a href="#">
+                                    <button class="action-button" style="background-color: #007bff">Update</button>
+                                </a>
+                            </div>
+                        </c:if>
+
+                        <c:if test="${not empty sessionScope.admin}">
+                            <div class="action">
+                                <a href="MainController?action=deleteProduct&prodID=${sp.prodID}">
+                                    <button class="action-button" style="background-color: #dc3545">Delete</button>
+                                </a>
+                            </div>
+                        </c:if>
                     </td>
                 </tr>
             </c:forEach>
