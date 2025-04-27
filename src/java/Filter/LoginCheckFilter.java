@@ -28,11 +28,7 @@ public class LoginCheckFilter implements Filter {
 
     private static final boolean debug = true;
 
-    // Define URL patterns for different roles
-    private static final String SALES_URL_PATTERN = "/SalesDashboard/";
-    private static final String MECHANIC_URL_PATTERN = "/MechanicDashboard/";
-    private static final String CUSTOMER_URL_PATTERN = "/CustomerDashboard/";
-    
+
     // The filter configuration object we are associated with.  If
     // this value is null, this filter instance is not currently
     // configured. 
@@ -120,7 +116,6 @@ public class LoginCheckFilter implements Filter {
             HttpServletResponse httpResponse = (HttpServletResponse) response;
             //only check for login and not creating new session for resource saving
             HttpSession session = httpRequest.getSession(false);
-            
 
             //If the resource the user want to access is:
             /*
@@ -130,12 +125,17 @@ public class LoginCheckFilter implements Filter {
              */
             //then continue as normal
             String webAction = httpRequest.getParameter("action");
+            String target = httpRequest.getParameter("item"); //target for the viewDetails action
+            //assign to product on default if parameter is missing to prevent validation error
+            if (target == null) {
+                target="product";
+            }
             String requestURI = httpRequest.getRequestURI();
             if (webAction == null
                     || webAction.equals("login")
                     || webAction.equals("registerAccount")
-                    || webAction.equals("viewDetails")
                     || webAction.equals("resetPassword")
+                    || (webAction.equals("viewDetails") && target.equals("product"))
                     || requestURI.contains("css/")) {
                 chain.doFilter(request, response);
                 return;
@@ -148,19 +148,20 @@ public class LoginCheckFilter implements Filter {
                 User adminUser = (User) session.getAttribute("admin");
                 userCheck = customerUser != null || adminUser != null;
             }
-            
+
             //session not found or user object is not found then redirect to login page
             if (session == null || !userCheck) {
                 System.out.println("[LoginCheckFilter.java] login state is false (logged out),"
                         + " redirecting the user to: " + httpRequest.getContextPath() + "/MainController");
                 httpResponse.sendRedirect(httpRequest.getContextPath() + "/MainController");
+                return;
             }
 
             // Role-based access control
             /*
                 If the user access pages directly through url, check for url pattern and associated user object
              */
-            /*
+ /*
             if (requestURI.contains(SALES_URL_PATTERN)) {
                 if (session.getAttribute("customer") == null) {
                     System.out.println("[LoginCheckFilter.java] Unauthorized access to Sales's functions,"
@@ -169,21 +170,26 @@ public class LoginCheckFilter implements Filter {
                     httpResponse.sendRedirect(httpRequest.getContextPath() + "/MainServlet");
                     return;
                 }
-            } else if (requestURI.contains(MECHANIC_URL_PATTERN)) {
+            } else */
+            if (webAction.equals("manageCategory")
+                    || webAction.equals("manageSupplier")
+                    || (webAction.equals("viewDetails") && target.equals("category"))
+                    || (webAction.equals("viewDetails") && target.equals("supplier"))
+                    || webAction.equals("addProduct")
+                    || webAction.equals("deleteProduct")
+                    || webAction.equals("updateProduct")
+                    ) {
                 if (session.getAttribute("admin") == null) {
-                    System.out.println("[LoginCheckFilter.java] Unauthorized");
-                    System.out.println("[LoginCheckFilter.java] Unauthorized access to Mechanic's functions,"
-                            + " redirecting the user to: " + httpRequest.getContextPath() + "/MainServlet");
+                    System.out.println("[LoginCheckFilter.java] Unauthorized access to Admin's functions,"
+                            + " redirecting the user to: " + httpRequest.getContextPath() + "/MainController");
                     session.setAttribute("error", "Unauthorized access found, please log in to proceed");
-                    httpResponse.sendRedirect(httpRequest.getContextPath() + "/MainServlet");
+                    httpResponse.sendRedirect(httpRequest.getContextPath() + "/MainController?action=login");
                     return;
                 }
             }
-            
-            */
 
-        chain.doFilter(request, response);
-        
+            chain.doFilter(request, response);
+
         } catch (Throwable t) {
             // If an exception is thrown somewhere down the filter chain,
             // we still want to execute our after processing, and then

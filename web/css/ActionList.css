@@ -55,7 +55,7 @@ h2 {
     margin-bottom: 15px;
 }
 
-.product-list {
+.item-list {
     width: 80%; /* Adjust width of the table */
     border-collapse: collapse;
     margin-bottom: 30px;
@@ -65,24 +65,24 @@ h2 {
     overflow: hidden; /* For rounded corners on table */
 }
 
-.product-list th,
-.product-list td {
+.item-list th,
+.item-list td {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: left;
 }
 
-.product-list th {
+.item-list th {
     background-color: #f0f0f0;
     font-weight: bold;
     color: #555;
 }
 
-.product-item:nth-child(even) {
+.item:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-.product-item td {
+.item td {
     color: #333;
 }
 
@@ -116,3 +116,4 @@ h2 {
 .action-button:last-child:hover {
     background-color: #1e7e34;
 }
+

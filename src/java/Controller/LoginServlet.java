@@ -41,6 +41,14 @@ public class LoginServlet extends HttpServlet {
         if (user != null) {
             // Save user info to session based on role
             HttpSession session = request.getSession();
+            
+            //check if user has login before login again (avoid user-control duplication)
+            User loggedInAdmin = (User) session.getAttribute("admin");
+            User loggedInCustomer = (User) session.getAttribute("customer");
+            if (loggedInAdmin != null || loggedInCustomer != null) {
+                session.removeAttribute("admin");
+                session.removeAttribute("customer");
+            }
             if (user.getUserGroup().equals("KH")) {
                 session.setAttribute("customer", user);
             } else if (user.getUserGroup().equals("AD")) {

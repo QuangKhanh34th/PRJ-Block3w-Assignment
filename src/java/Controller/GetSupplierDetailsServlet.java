@@ -5,8 +5,8 @@
 
 package Controller;
 
-import DAO.ProductDAO;
-import Model.Product;
+import DAO.SupplierDAO;
+import Model.Supplier;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ASUS
  */
-public class ViewProductDetailsServlet extends HttpServlet {
+public class GetSupplierDetailsServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -29,20 +29,18 @@ public class ViewProductDetailsServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String prodID = request.getParameter("masp");
-
-        if (prodID != null && !prodID.isEmpty()) {
-            ProductDAO dao = new ProductDAO();
-            Product product = dao.getProductByID(prodID);
-
-            if (product != null) {
-                request.setAttribute("product", product);
-                request.getRequestDispatcher("view/ProductDetails.jsp").forward(request, response);
+        String supplierID = request.getParameter("supplierID");
+        
+        if (supplierID!=null && !supplierID.isEmpty()) {
+            SupplierDAO supplierDAO = new SupplierDAO();
+            Supplier supplier = supplierDAO.getSupplierByID(supplierID);
+            
+            if (supplier != null) {
+                request.setAttribute("supplier", supplier);
+                request.getRequestDispatcher("view/SupplierDetails.jsp").forward(request, response);
             } else {
                 response.getWriter().println("No product found.");
             }
-        } else {
-            response.getWriter().println("Incorrect ProductID.");
         }
     } 
 

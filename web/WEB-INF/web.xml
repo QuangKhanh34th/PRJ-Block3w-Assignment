@@ -36,6 +36,34 @@
         <servlet-name>ResetUserPasswordServlet</servlet-name>
         <servlet-class>Controller.ResetUserPasswordServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetCategoryListServlet</servlet-name>
+        <servlet-class>Controller.GetCategoryListServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetSupplierListServlet</servlet-name>
+        <servlet-class>Controller.GetSupplierListServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetCategoryDetailsServlet</servlet-name>
+        <servlet-class>Controller.GetCategoryDetailsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetSupplierDetailsServlet</servlet-name>
+        <servlet-class>Controller.GetSupplierDetailsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addNewProductServlet</servlet-name>
+        <servlet-class>Controller.addNewProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteProductServlet</servlet-name>
+        <servlet-class>Controller.DeleteProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateProductServlet</servlet-name>
+        <servlet-class>Controller.UpdateProductServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -63,6 +91,34 @@
     <servlet-mapping>
         <servlet-name>ResetUserPasswordServlet</servlet-name>
         <url-pattern>/resetPwd</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetCategoryListServlet</servlet-name>
+        <url-pattern>/GetCategoryListServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetSupplierListServlet</servlet-name>
+        <url-pattern>/GetSupplierListServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetCategoryDetailsServlet</servlet-name>
+        <url-pattern>/GetCategoryDetailsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetSupplierDetailsServlet</servlet-name>
+        <url-pattern>/GetSupplierDetailsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addNewProductServlet</servlet-name>
+        <url-pattern>/addNewProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteProductServlet</servlet-name>
+        <url-pattern>/DeleteProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateProductServlet</servlet-name>
+        <url-pattern>/UpdateProductServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
