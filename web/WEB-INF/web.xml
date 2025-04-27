@@ -68,6 +68,18 @@
         <servlet-name>AddItemToCartServlet</servlet-name>
         <servlet-class>Controller.AddItemToCartServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetCartInfoServlet</servlet-name>
+        <servlet-class>Controller.GetCartInfoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RemoveItemFromCartServlet</servlet-name>
+        <servlet-class>Controller.RemoveItemFromCartServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateCartItemQuantityServlet</servlet-name>
+        <servlet-class>Controller.UpdateCartItemQuantityServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -127,6 +139,18 @@
     <servlet-mapping>
         <servlet-name>AddItemToCartServlet</servlet-name>
         <url-pattern>/AddItemToCartServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetCartInfoServlet</servlet-name>
+        <url-pattern>/GetCartInfoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveItemFromCartServlet</servlet-name>
+        <url-pattern>/RemoveItemFromCartServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateCartItemQuantityServlet</servlet-name>
+        <url-pattern>/UpdateCartItemQuantityServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

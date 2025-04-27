@@ -162,15 +162,17 @@ public class LoginCheckFilter implements Filter {
                 If the user access pages directly through url, check for url pattern and associated user object
              */
  
-            if (webAction.equals("addToCart")
-                    || webAction.equals("viewCart")
+            if (webAction.equals("viewCart")
+                    || webAction.equals("addToCart")
+                    || webAction.equals("removeFromCart")
+                    || webAction.equals("updateCart")
                     || webAction.equals("viewOrders")
                     ) {
                 if (session.getAttribute("customer") == null) {
                     System.out.println("[LoginCheckFilter.java] Unauthorized access to Customer's functions,"
                             + " redirecting the user to: " + httpRequest.getContextPath() + "/MainServlet");
                     session.setAttribute("error", "Unauthorized access found, please log in to proceed");
-                    httpResponse.sendRedirect(httpRequest.getContextPath() + "/MainServlet?action=login");
+                    httpResponse.sendRedirect(httpRequest.getContextPath() + "/MainController?action=login");
                     return;
                 }
             } else if (webAction.equals("manageCategory")

@@ -42,6 +42,8 @@ public class MainController extends HttpServlet {
     private static final String VIEW_ORDERS = "/GetOrderListServlet";
     private static final String VIEW_CART = "/GetCartInfoServlet";
     private static final String ADD_ITEM_CART = "/AddItemToCartServlet";
+    private static final String REMOVE_ITEM_CART = "/RemoveItemFromCartServlet";
+    private static final String UPDATE_CART_ITEM_QUANTITY = "/UpdateCartItemQuantityServlet";
 
 
 
@@ -132,12 +134,22 @@ public class MainController extends HttpServlet {
                     }
                     
                     case "viewCart": {
-                        
+                        url=VIEW_CART;
                         break;
                     }
                     
                     case "addToCart": {
                         url=ADD_ITEM_CART;
+                        break;
+                    }
+                    
+                    case "removeFromCart": {
+                        url = REMOVE_ITEM_CART;
+                        break;
+                    }
+                    
+                    case "updateCart": {
+                        url = UPDATE_CART_ITEM_QUANTITY;
                         break;
                     }
                 }
