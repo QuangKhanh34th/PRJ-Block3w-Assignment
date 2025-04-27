@@ -167,6 +167,7 @@ public class LoginCheckFilter implements Filter {
                     || webAction.equals("removeFromCart")
                     || webAction.equals("updateCart")
                     || webAction.equals("viewOrders")
+                    || (webAction.equals("viewDetails") && target.equals("order"))
                     ) {
                 if (session.getAttribute("customer") == null) {
                     System.out.println("[LoginCheckFilter.java] Unauthorized access to Customer's functions,"

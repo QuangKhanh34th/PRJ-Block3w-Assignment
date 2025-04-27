@@ -80,6 +80,14 @@
         <servlet-name>UpdateCartItemQuantityServlet</servlet-name>
         <servlet-class>Controller.UpdateCartItemQuantityServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetOrderListServlet</servlet-name>
+        <servlet-class>Controller.GetOrderListServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetDetailedOrderServlet</servlet-name>
+        <servlet-class>Controller.GetDetailedOrderServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -151,6 +159,14 @@
     <servlet-mapping>
         <servlet-name>UpdateCartItemQuantityServlet</servlet-name>
         <url-pattern>/UpdateCartItemQuantityServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetOrderListServlet</servlet-name>
+        <url-pattern>/GetOrderListServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetDetailedOrderServlet</servlet-name>
+        <url-pattern>/GetDetailedOrderServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
