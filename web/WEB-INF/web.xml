@@ -48,6 +48,10 @@
         <servlet-name>GetCategoryDetailsServlet</servlet-name>
         <servlet-class>Controller.GetCategoryDetailsServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetSupplierDetailsServlet</servlet-name>
+        <servlet-class>Controller.GetSupplierDetailsServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>GetCategoryDetailsServlet</servlet-name>
         <url-pattern>/GetCategoryDetailsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetSupplierDetailsServlet</servlet-name>
+        <url-pattern>/GetSupplierDetailsServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

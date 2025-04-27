@@ -62,9 +62,8 @@
 
         <table border="1" cellpadding="5" cellspacing="0" class="item-list">
             <tr>
-                <th>Code</th>
-                <th>Name</th>
-
+                <th>CategoryID</th>
+                <th>Category Name</th>
                 <th>Action</th>
             </tr>
             <!-- Dùng JSTL để duyệt qua danh sách sản phẩm -->

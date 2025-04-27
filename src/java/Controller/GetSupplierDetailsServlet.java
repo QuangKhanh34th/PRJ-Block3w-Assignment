@@ -5,9 +5,10 @@
 
 package Controller;
 
-import DAO.CategoryDAO;
-import Model.Category;
+import DAO.SupplierDAO;
+import Model.Supplier;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ASUS
  */
-public class GetCategoryDetailsServlet extends HttpServlet {
+public class GetSupplierDetailsServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -28,15 +29,15 @@ public class GetCategoryDetailsServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String categoryID = request.getParameter("categoryID");
+        String supplierID = request.getParameter("supplierID");
         
-        if (categoryID!=null && !categoryID.isEmpty()) {
-            CategoryDAO categoryDAO = new CategoryDAO();
-            Category category = categoryDAO.getCategoryByID(categoryID);
+        if (supplierID!=null && !supplierID.isEmpty()) {
+            SupplierDAO supplierDAO = new SupplierDAO();
+            Supplier supplier = supplierDAO.getSupplierByID(supplierID);
             
-            if (category != null) {
-                request.setAttribute("category", category);
-                request.getRequestDispatcher("view/CategoryDetails.jsp").forward(request, response);
+            if (supplier != null) {
+                request.setAttribute("supplier", supplier);
+                request.getRequestDispatcher("view/SupplierDetails.jsp").forward(request, response);
             } else {
                 response.getWriter().println("No product found.");
             }

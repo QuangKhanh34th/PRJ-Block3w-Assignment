@@ -5,8 +5,11 @@
 
 package Controller;
 
+import DAO.SupplierDAO;
+import Model.Supplier;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +24,9 @@ public class GetSupplierListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        SupplierDAO supplierDAO = new SupplierDAO();
+        List<Supplier> supplierList = supplierDAO.getAllSupplier();
+        request.setAttribute("supplierList", supplierList);
         request.getRequestDispatcher("view/SupplierFunctions.jsp").forward(request, response);
     } 
 
