@@ -39,6 +39,16 @@ public class MainController extends HttpServlet {
     private static final String CATEGORY_DETAILS = "/GetCategoryDetailsServlet";
     private static final String MANAGE_SUPPLIER = "/GetSupplierListServlet";
     private static final String SUPPLIER_DETAILS = "/GetSupplierDetailsServlet";
+    private static final String VIEW_CART = "/GetCartInfoServlet";
+    private static final String ADD_ITEM_CART = "/AddItemToCartServlet";
+    private static final String REMOVE_ITEM_CART = "/RemoveItemFromCartServlet";
+    private static final String UPDATE_CART_ITEM_QUANTITY = "/UpdateCartItemQuantityServlet";
+    private static final String VIEW_ORDERS = "/GetOrderListServlet";
+    private static final String ORDER_DETAILS ="/GetDetailedOrderServlet";
+    private static final String CHECKOUT = "/CheckoutServlet";
+
+
+
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -74,6 +84,11 @@ public class MainController extends HttpServlet {
 
                             case "supplier": {
                                 url = SUPPLIER_DETAILS;
+                                break;
+                            }
+                            
+                            case "order": {
+                                url = ORDER_DETAILS;
                                 break;
                             }
                         }
@@ -117,6 +132,36 @@ public class MainController extends HttpServlet {
                     
                     case "updateProduct": {
                         url = UPDATE_PRODUCT;
+                        break;
+                    }
+                    
+                    case "viewCart": {
+                        url=VIEW_CART;
+                        break;
+                    }
+                    
+                    case "addToCart": {
+                        url=ADD_ITEM_CART;
+                        break;
+                    }
+                    
+                    case "removeFromCart": {
+                        url = REMOVE_ITEM_CART;
+                        break;
+                    }
+                    
+                    case "updateCart": {
+                        url = UPDATE_CART_ITEM_QUANTITY;
+                        break;
+                    }
+                    
+                    case "viewOrders": {
+                        url =VIEW_ORDERS;
+                        break;
+                    }
+                    
+                    case "checkout": {
+                        url = CHECKOUT;
                         break;
                     }
                 }

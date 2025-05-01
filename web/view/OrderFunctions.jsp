@@ -1,6 +1,6 @@
 <%-- 
-    Document   : SupplierFunctions
-    Created on : Apr 26, 2025, 11:25:10 PM
+    Document   : OrderFunctions
+    Created on : Apr 27, 2025, 11:02:15 PM
     Author     : ASUS
 --%>
 
@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Manage Supplier - Game Shop</title>
+        <title>${sessionScope.customer.username}'s Orders</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ActionList.css">
         <style>
             .navigation-links {
@@ -35,11 +35,11 @@
         <div class="header">
             <div style="display: flex; align-items: center;">
                 <span class="website-name">Game Shop</span>
-                <c:if test="${not empty sessionScope.admin}">
+                <c:if test="${not empty sessionScope.customer}">
                     <div class="navigation-links">
-                        <a href="MainController">Manage Product</a>
-                        <a href="MainController?action=manageCategory">Manage Category</a>
-                        <a href="MainController?action=manageSupplier">Manage Supplier</a>
+                        <a href="MainController">Product List</a>
+                        <a href="MainController?action=viewOrders">Orders</a>
+                        <a href="MainController?action=viewCart">My Cart</a>
                     </div>
                 </c:if>
             </div>
@@ -58,24 +58,25 @@
             </div>
         </div>
 
-        <h2>Supplier List</h2>
+        <h2>Order List</h2>
 
         <table border="1" cellpadding="5" cellspacing="0" class="item-list">
             <tr>
-                <th>SupplierID</th>
-                <th>Supplier Name</th>
-                <th>Address</th>
+                <th>OrderID</th>
+                <th>Date ordered</th>
+                <th>State</th>
                 <th>Action</th>
             </tr>
             <!-- Dùng JSTL để duyệt qua danh sách sản phẩm -->
-            <c:forEach var="sp" items="${supplierList}">
+            <c:forEach var="ord" items="${orderList}">
                 <tr class="item">
-                    <td>${sp.supplierID}</td>
-                    <td>${sp.supplierName}</td>
-                    <td>${sp.supplierAddress}</td>
+                    <td>${ord.orderID}</td>
+                    <td>${ord.orderTime}</td>
+                    <td>${ord.orderState == 1 ? 'Completed' : 'Canceled'}</td>
+
                     <td>
                         <div class="action">
-                            <a href="MainController?action=viewDetails&item=supplier&supplierID=${sp.supplierID}">
+                            <a href="MainController?action=viewDetails&item=order&orderID=${ord.orderID}">
                                 <button class="action-button">Details</button>
                             </a>
                         </div>

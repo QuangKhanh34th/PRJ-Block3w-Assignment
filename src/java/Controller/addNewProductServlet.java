@@ -59,6 +59,9 @@ public class addNewProductServlet extends HttpServlet {
             errorMessage = "ProductID already exist in database";
         }
 
+        if (productID.length() >= 5) {
+            errorMessage = "ProductID must not be larger than 5 characters";
+        }
         if (productDescription == null || productDescription.trim().isEmpty()) {
             productDescription = "TBA";
         }

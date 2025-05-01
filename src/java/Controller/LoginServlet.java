@@ -46,8 +46,8 @@ public class LoginServlet extends HttpServlet {
             User loggedInAdmin = (User) session.getAttribute("admin");
             User loggedInCustomer = (User) session.getAttribute("customer");
             if (loggedInAdmin != null || loggedInCustomer != null) {
-                session.removeAttribute("admin");
-                session.removeAttribute("customer");
+                session.invalidate();
+                session = request.getSession();
             }
             if (user.getUserGroup().equals("KH")) {
                 session.setAttribute("customer", user);

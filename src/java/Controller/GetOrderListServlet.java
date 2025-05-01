@@ -5,8 +5,13 @@
 
 package Controller;
 
+import DAO.OrderDAO;
+import Model.Order;
+import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +22,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author ASUS
  */
-public class LogoutServlet extends HttpServlet {
+public class GetOrderListServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -28,14 +33,19 @@ public class LogoutServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        try {
-                HttpSession session = request.getSession();
-                session.invalidate();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }finally{
-                response.sendRedirect( request.getContextPath() + "/MainController");
-            }
+        //init variables
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("customer");
+        List<Order> orderList = new ArrayList<>();
+        OrderDAO orderDAO = new OrderDAO();
+        
+        //get orderList of the current logged in user
+        orderList = orderDAO.getAllOrders(user.getUsername());
+        
+        //redirect to view
+        request.setAttribute("orderList", orderList);
+        request.getRequestDispatcher("view/OrderFunctions.jsp").forward(request, response);
+        
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
